@@ -1,0 +1,59 @@
+
+<% 
+    var perpage = 10;
+%>
+<!DOCTYPE html>
+<html lang='en'>
+	<head> 
+		<meta charset='UTF-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<meta http-equiv='X-UA=Compatible' content='ie=edge'>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<title>Event List</title>
+	</head>
+	<body>
+		<div class="container mt-5 border rounded shadow-sm p-3 bg-transparent">
+            <p class="text-center font-italic text-monospace">Event List. </p>
+            <table class="table" id="event">
+                    <form action="/delete" method="POST">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="text" class="form-control" name="id_del" placeholder="ID">
+                            </div>
+                            <div class="col">
+                                    <button class="d-flex justify-content-center btn btn-dark media btn-secondary">Delete</button>
+                            </div>
+                        </div><br>
+                    </form>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Event</th>
+                    <th>Position</th>
+                    <th>Photo</th>
+                </tr>
+                <tr>
+                    <% for (var i = 0; i < data.length;  i++) { %>
+                    <tr>
+                        <th id="id"><%= data[i].id%> </th>
+                        <th id="name"><%= data[i].name_user%> </th>
+                        <th id="surname"><%= data[i].surname_user%> </th>
+                        <th id="event"><%= data[i].id_event%> </th>
+                        <th id="pos"><%= data[i].pos_event%> </th>
+                        <th id="url"><%= data[i].url_event%> </th>
+                    </tr>
+                    <% } %>
+            </table>
+            <div class="row justify-content-center">
+                <div class="btn-group col-md-3" role="group" aria-label="Basic example">
+                    <% var pBut = Math.ceil(count[0]['total']/perpage); %>
+                    <% for (var i = 0; i < pBut;  i++) { %>
+                    <button class="d-flex justify-content-center btn btn-dark media mt-3 btn-secondary" onclick="window.location.href = '/get/<%= i+1 %>' "> <%= i+1 %> </button>
+                    <% } %>
+                </div>
+            </div>
+            <br>
+		</div>
+	</body>
+</html>
